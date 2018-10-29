@@ -29,7 +29,7 @@ class BerkasController extends Controller
   		->get();
       $t002s = User::all();
 
-      return view('transaksi.Berkas', compact('transaksi', 't002s', 'no'));
+      return view('transaksi.berkas', compact('transaksi', 't002s', 'no'));
     }
 
     /**
