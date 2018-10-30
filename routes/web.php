@@ -56,6 +56,10 @@ Route::get('/akad', 'AkadController@index');
 Route::post('akad/post', 'AkadController@store')->name('akad.post');
 Route::resource('akad', 'AkadController');
 
+Route::get('/sold', 'SoldController@index');
+Route::post('sold/post', 'SoldController@store')->name('sold.post');
+Route::resource('sold', 'SoldController');
+
 
 Route::post('/booking/del/{id}', 'Transaksi\BookingController@destroy')->name('booking.del');
 

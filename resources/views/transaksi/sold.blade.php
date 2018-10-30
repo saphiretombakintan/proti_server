@@ -58,7 +58,7 @@
 				<div class="m-subheader ">
 					<div class="d-flex align-items-center">
 						<div class="mr-auto">
-							<h3 class="m-subheader__title m-subheader__title--separator">DATA BOOKING</h3>
+							<h3 class="m-subheader__title m-subheader__title--separator">DATA AKAD</h3>
 							<ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
 								<li class="m-nav__item m-nav__item--home">
 									<a href="#" class="m-nav__link m-nav__link--icon">
@@ -74,7 +74,7 @@
 								<li class="m-nav__separator">-</li>
 								<li class="m-nav__item">
 									<a href="" class="m-nav__link">
-										<span class="m-nav__link-text">Booking</span>
+										<span class="m-nav__link-text">Sold</span>
 									</a>
 								</li>
 							</ul>
@@ -185,7 +185,7 @@
                   <div class="modal fade" id="m_modal_{{ $data->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         						<div class="modal-dialog modal-lg" role="document">
         							<div class="modal-content">
-        								<form class="m-form m-form--fit m-form--label-align-right" method="POST" action="{{ route('berkas.post') }}">
+        								<form class="m-form m-form--fit m-form--label-align-right" method="POST" action="{{ route('akad.post') }}">
         									{{ csrf_field() }}
         									<input type="hidden" name="code_customer" >
         									<div class="modal-header">
@@ -196,9 +196,9 @@
         									</div>
         									<div class="modal-body">
         										<div class="form-group m-form__group">
-        											<label for="exampleInputEmail1">Tanggal Berkas</label>
+        											<label for="exampleInputEmail1">Tanggal BAST</label>
         											<div class="input-group date">
-        													<input type="text" class="form-control m-input" readonly name="tanggal"  placeholder="Pilih Tanggal" id="m_datepicker_2"/>
+        												<input type="text" class="form-control m-input" readonly name="tanggal"  placeholder="Pilih Tanggal" id="m_datepicker_2"/>
         												<div class="input-group-append">
         													<span class="input-group-text">
         														<i class="la la-calendar-check-o"></i>
@@ -207,8 +207,8 @@
         											</div>
         										</div>
         										<div class="form-group m-form__group">
-        											<label for="exampleInputEmail1">Bank</label>
-        											<input type="text" class="form-control m-input" name="bank" placeholder="Bank">
+        											<label for="exampleInputEmail1">PIC BAST</label>
+        											<input type="text" class="form-control m-input" name="kprs" placeholder="Nama KPRS Bank">
         										</div>
                             <div class="form-group m-form__group">
                               <!-- <label for="exampleInputEmail1">CustumermCode</label> -->
@@ -249,17 +249,20 @@
 	<script src="{{ URL::asset('assets/demo/default/base/scripts.bundle.js') }}" type="text/javascript"></script>
 
 	<!--end::Base Scripts -->
-	<script src="{{ URL::asset('assets/demo/default/custom/crud/forms/widgets/bootstrap-datepicker.js') }}" type="text/javascript"></script>
 
 	<!--begin::Page Vendors Scripts -->
 	<script src="{{ URL::asset('assets/vendors/custom/datatables/datatables.bundle.js')}}" type="text/javascript"></script>
 
 	<!--end::Page Vendors Scripts -->
+  <!-- <script src="{{ URL::assets('assets/demo/default/custom/crud/forms/widgets/bootstrap-datepicker.js')}}" type="text/javascript"></script> -->
+
 
 	<!--begin::Page Resources -->
 	<script type="text/javascript">
 		$(document).ready( function () {
-
+      $("#m_datepicker_2").datepicker({
+        format: 'yyyy-mm-dd'
+      });
 			$('#m_table_1').DataTable({
 				select:{
 					style: "single",
@@ -287,7 +290,63 @@
 						}
 					}
 				],
-				
+				footerCallback: function(a, b) {
+					var o = this.api(),
+					l = function(a) {
+						return "string" == typeof a ? 1 * a.replace(/[\Rp.,]/g, "") : "number" == typeof a ? a : 0
+					},
+					u = o.column(5).data().reduce(function(a, b) {
+						return l(a) + l(b)
+					}, 0),
+					i = o.column(5, {
+						page: "current"
+					}).data().reduce(function(a, b) {
+						return l(a) + l(b)
+					}, 0);
+					$(o.column(5).footer()).html("Rp. " + mUtil.numberString(i.toFixed(0)));
+
+					var o = this.api(),
+					l = function(a) {
+						return "string" == typeof a ? 1 * a.replace(/[\Rp.,]/g, "") : "number" == typeof a ? a : 0
+					},
+					u = o.column(7).data().reduce(function(a, b) {
+						return l(a) + l(b)
+					}, 0),
+					i = o.column(7, {
+						page: "current"
+					}).data().reduce(function(a, b) {
+						return l(a) + l(b)
+					}, 0);
+					$(o.column(7).footer()).html("Rp. " + mUtil.numberString(i.toFixed(0)));
+
+					var o = this.api(),
+					l = function(a) {
+						return "string" == typeof a ? 1 * a.replace(/[\Rp.,]/g, "") : "number" == typeof a ? a : 0
+					},
+					u = o.column(8).data().reduce(function(a, b) {
+						return l(a) + l(b)
+					}, 0),
+					i = o.column(8, {
+						page: "current"
+					}).data().reduce(function(a, b) {
+						return l(a) + l(b)
+					}, 0);
+					$(o.column(8).footer()).html("Rp. " + mUtil.numberString(i.toFixed(0)));
+
+					var o = this.api(),
+					l = function(a) {
+						return "string" == typeof a ? 1 * a.replace(/[\Rp.,]/g, "") : "number" == typeof a ? a : 0
+					},
+					u = o.column(9).data().reduce(function(a, b) {
+						return l(a) + l(b)
+					}, 0),
+					i = o.column(9, {
+						page: "current"
+					}).data().reduce(function(a, b) {
+						return l(a) + l(b)
+					}, 0);
+					$(o.column(9).footer()).html("Rp. " + mUtil.numberString(i.toFixed(0)));
+				},
 
 			});
 
