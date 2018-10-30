@@ -254,7 +254,7 @@
 	<script src="{{ URL::asset('assets/vendors/custom/datatables/datatables.bundle.js')}}" type="text/javascript"></script>
 
 	<!--end::Page Vendors Scripts -->
-  <!-- <script src="{{ URL::assets('assets/demo/default/custom/crud/forms/widgets/bootstrap-datepicker.js')}}" type="text/javascript"></script> -->
+  <script src="{{ URL::asset('assets/demo/default/custom/crud/forms/widgets/bootstrap-datepicker.js')}}" type="text/javascript"></script>
 
 
 	<!--begin::Page Resources -->
